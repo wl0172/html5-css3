@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Document</title>
+		<style>
+			/*  外部容器样式*/
+			.container {
+				width: 300px;
+				height: 30px;
+				border: 1px solid lightgray;
+				border-radius: 15px;
+			}
+
+			/* 内部加载部分样式 */
+			#content {
+				height: 30px;
+				border-radius: 15px;
+				background-color: skyblue;
+				text-align: center;
+				line-height: 30px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div id="content"></div>
+		</div>
+
+		<script>
+			//获取content节点
+			var _content = document.getElementById("content");
+			var num = 0; //进度条里边的长度
+
+			//设置计时器（动起来的关键）
+			var id = setInterval(function() {
+				num++;
+				//设置content的宽度（动态变化）
+				_content.style.width = `${num}px`;
+				var num1 = parseInt(num / 3);
+				//content内文字显示为百分比与宽度对应
+				_content.innerText = `${num1}%`;
+				//当content的宽度与container宽度相同时清除计时器
+				if (num == 300) {
+					clearInterval(id);
+				}
+				//加载到100%时替换content中的文字
+				if (_content.innerText == "100%") {
+					_content.innerText = "加载完成"
+				}
+				//每隔10毫秒变换一次
+			}, 10)
+		</script>
+	</body>
+</html>

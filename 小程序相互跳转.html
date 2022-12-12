@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>h5跳转到小程序页面</title>
+		<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+		<script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
+
+	</head>
+	<body>
+		<div class="app">
+			<p>this is h5页面。</p> <button type="button" id="btn">返回小程序</button>
+		</div>
+		<script>
+			/* eslint-disable */
+			$(function() {
+				$('#btn').on('click', function(s) {
+					wx.miniProgram.navigateTo({
+						url: '/pages/detail/index?id=xxx',
+						success: function() {
+							console.log('success')
+						},
+						fail: function() {
+							console.log('fail');
+						},
+						complete: function() {
+							console.log('complete');
+						}
+					});
+				});
+			});
+		</script>
+	</body>
+</html>

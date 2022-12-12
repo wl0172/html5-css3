@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>运动</title>
+		<style>
+			#div {
+				position: absolute;
+				width: 100px;
+				height: 100px;
+				background: rebeccapurple;
+				left: 0;
+				top: 0;
+				z-index: 999;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="div">
+
+		</div>
+	</body>
+	<script>
+		var x = 50,
+			y = 60
+		var xin = true,
+			yin = true
+		var step = 1
+		var delay = 10
+		var obj = document.getElementById("div")
+
+		function oDiv() {
+			var L = T = 0
+			var R = document.documentElement.clientWidth - obj.offsetWidth
+			var B = document.documentElement.clientHeight - obj.offsetHeight
+			obj.style.left = x + document.body.scrollLeft + document.documentElement.scrollLeft + "px"
+			obj.style.top = y + document.body.scrollTop + document.documentElement.scrollTop + "px"
+			x = x + step * (xin ? 1 : -1)
+			if (x < L) {
+				xin = true;
+				x = L
+			}
+			if (x > R) {
+				xin = false;
+				x = R
+			}
+			y = y + step * (yin ? 1 : -1)
+			if (y < T) {
+				yin = true;
+				y = T
+			}
+			if (y > B) {
+				yin = false;
+				y = B
+			}
+		}
+		var itl = setInterval("oDiv()", delay)
+		obj.onmouseover = function() {
+			clearInterval(itl)
+		}
+		obj.onmouseout = function() {
+			itl = setInterval("oDiv()", delay)
+		}
+	</script>
+
+</html>

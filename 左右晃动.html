@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+
+	<style>
+		div {
+			width: 200px;
+			background: red;
+			animation: error-swing infinite 2s ease-in-out alternate;
+			transform-origin: center top;
+			position: relative;
+			margin: auto;
+			margin-bottom: 20px;
+			z-index: 5;
+			line-height: 1;
+			font-size: 32px;
+			text-align: center;
+		}
+
+		@keyframes error-swing {
+			0% {
+				transform: rotate(1deg)
+			}
+
+			100% {
+				transform: rotate(-2deg)
+			}
+		}
+	</style>
+
+	<body>
+
+		<div>123</div>
+
+	</body>
+</html>
