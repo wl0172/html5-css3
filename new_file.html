@@ -8,6 +8,8 @@
 		</script> -->
 
 		<script src="./js/jquery.js"></script>
+		<script src="https://unpkg.com/vconsole@latest/dist/vconsole.min.js"></script>
+
 	</head>
 	<style>
 		html,
@@ -55,6 +57,9 @@
 	</body>
 
 	<script>
+		const vConsole = new VConsole();
+		let texts = document.getElementById('text')
+
 		let buttons = document.getElementById('buttons')
 
 		let ifra = document.getElementById('ifra').contentWindow.document.children
@@ -62,7 +67,9 @@
 		let divs = ifra[0].children[1].children
 
 		buttons.addEventListener('click', function() {
-			alert(1)
+
+			texts.value = 1
+
 		})
 	</script>
 
