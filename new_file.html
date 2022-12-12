@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<!-- <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+		<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
+		</script> -->
+
+		<script src="./js/jquery.js"></script>
+	</head>
+	<style>
+		html,
+		body {
+			height: 100vh;
+		}
+
+		#ifra {
+			width: 100%;
+			height: 50vh;
+		}
+
+		#text {
+			width: 100%;
+			height: 30vh;
+		}
+
+		.divbutton {
+			width: 100%;
+			height: 5vh;
+		}
+
+		button {
+			width: 100%;
+			height: 100%;
+			font-size: 4rem;
+		}
+	</style>
+	<body>
+
+		<div>
+			<div>
+				<iframe id="ifra"
+					src="https://prodev.m.jd.com/mall/active/4JoMQoF2oL7ZKCxTcHxRgjBQXkMt/index.html?hideyl=1&cu=true&utm_source=kong&utm_medium=jingfen&utm_campaign=t_1000890973_&utm_term=d62a1d0ccc1a4634ae9f3b583c10bab1"
+					name="currentif"></iframe>
+			</div>
+			<div>
+				<textarea name="" id="text" cols="30" rows="10"></textarea>
+			</div>
+			<div class="divbutton">
+				<button id="buttons">确定</button>
+			</div>
+		</div>
+
+	</body>
+
+	<script>
+		let buttons = document.getElementById('buttons')
+
+		let ifra = document.getElementById('ifra').contentWindow.document.children
+
+		let divs = ifra[0].children[1].children
+
+		buttons.addEventListener('click', function() {
+			alert(1)
+		})
+	</script>
+
+</html>
