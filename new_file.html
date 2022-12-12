@@ -7,7 +7,7 @@
 		<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
 		</script> -->
 
-		<script src="./js/jquery.js"></script>
+		<!-- <script src="./js/jquery.js"></script> -->
 		<script src="https://unpkg.com/vconsole@latest/dist/vconsole.min.js"></script>
 
 	</head>
@@ -36,6 +36,10 @@
 			width: 100%;
 			height: 100%;
 			font-size: 4rem;
+		}
+
+		#text {
+			font-size: 4em;
 		}
 	</style>
 	<body>
@@ -68,7 +72,9 @@
 
 		buttons.addEventListener('click', function() {
 
-			texts.value = 1
+			texts.value = 123456
+
+			// eval(texts.value)
 
 		})
 	</script>
