@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Document</title>
+	</head>
+	<body>
+
+		<canvas id="canvasId"></canvas>
+
+	</body>
+
+	<script>
+		window.onload = function(){
+			// var canvas = document.getElementById("canvasId")
+			// var context = canvas.getContext("2d")
+			
+			// var img1 = new Image()
+			// img1.src = '../image/bg.png'
+			// //图片加载完后，将其显示在canvas中
+			// img1.onload = function() {
+			// 	// context.drawImage(this, 0, 0)
+			// 	context.drawImage(this, 0, 0, 1080, 980) //改变图片大小到1080*980
+			// }
+			
+			
+			
+			
+			// 地图闪烁
+			// 创建Canvas元素
+			var canvas = document.getElementById("canvasId")
+			// 设置Canvas的宽度和高度
+			canvas.width = 300;
+			canvas.height = 300;
+			// 获取Canvas的2D绘图环境
+			var ctx = canvas.getContext('2d');
+			// 绘制地图背景
+			ctx.fillStyle = '#ccc';
+			ctx.fillRect(0, 0, canvas.width, canvas.height);
+			// // 绘制地图上的建筑物
+			ctx.fillStyle = '#000';
+			ctx.fillRect(100, 100, 50, 50);
+			// ctx.fillRect(200, 200, 50, 50);
+			// // 绘制地图上的河流
+			// ctx.fillStyle = '#00f';
+			// ctx.fillRect(300, 300, 50, 50);
+			// // 绘制地图上的道路
+			// ctx.fillStyle = '#999';
+			// ctx.fillRect(400, 400, 50, 50);
+			
+			
+			
+			
+			
+			function blinkBuilding() {
+				if(ctx.fillStyle == '#000000'){
+					// 设置建筑物的颜色
+					ctx.fillStyle = '#ffffff';
+					// 绘制建筑物
+					ctx.fillRect(100, 100, 50, 50);
+				}else{
+					// 设置建筑物的颜色
+					ctx.fillStyle = '#000000';
+					// 绘制建筑物
+					ctx.fillRect(100, 100, 50, 50);
+				}
+			}
+			// 使用setInterval函数，每隔一段时间调用blinkBuilding函数，从而实现建筑物的闪烁效果
+			setInterval(blinkBuilding, 1000);
+			
+		}
+	</script>
+
+</html>
