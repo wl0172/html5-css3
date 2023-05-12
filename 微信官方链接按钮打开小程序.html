@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>微信小程序</title>
+  </title>
+
+  <script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
+  <script src="https://res2.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
+
+  <script>
+
+    window.alert = function () { }
+
+    let wxConfig = {}
+    const xhr = new XMLHttpRequest();
+    xhr.open("get", `https://dev-fsn-wishlist-poc.comeyes.com/wx/mp/jsapi/getJsapiTicket?url=${window.location.href}`, true);
+    xhr.send(null)
+    xhr.onloadend = function (res) {
+      console.log(JSON.parse(xhr.response), '======')
+      // appId "wx34726a2637255f65"
+      // nonceStr "b1lhOkvWRtEfz6KA"
+      // signature "0d1e3c611647e0360dc643528d7a85112eb7c1a8"
+      // timestamp 1675401814
+      // url "file:///Users/cce/Desktop/test.html"
+      wxConfig = JSON.parse(xhr.response)
+      wx.config({
+        debug: true, // 开启调试模式,调用的所有 api 的返回值会在客户端 alert 出来，若要查看传入的参数，可以在 pc 端打开，参数信息会通过 log 打出，仅在 pc 端时才会打印
+        appId: wxConfig.appId, // 必填，公众号的唯一标识
+        timestamp: wxConfig.timestamp, // 必填，生成签名的时间戳
+        nonceStr: wxConfig.nonceStr, // 必填，生成签名的随机串
+        signature: wxConfig.signature,// 必填，签名
+        jsApiList: ['scanQRCode', 'chooseImage', 'previewImage', 'getLocalImgData', 'hideMenuItems', 'closeWindow', 'updateAppMessageShareData', 'updateTimelineShareData'], // 必填，需要使用的JS接口列表
+        openTagList: ['wx-open-launch-weapp'] // 可选，需要使用的开放标签列表，例如['wx-open-launch-app']
+      });
+      wx.ready(function () {
+        // 隐藏的菜单项，禁止分享
+        wx.hideMenuItems({
+          // 要隐藏的菜单项，只能隐藏“传播类”和“保护类”按钮，所有menu项见附录3
+          menuList: ["menuItem:share:appMessage", "menuItem:share:timeline", "menuItem:share:qq", "menuItem:share:weiboApp", "menuItem:favorite", "menuItem:share:facebook", "menuItem:share:QZone", "menuItem:copyUrl", "menuItem:delete", "menuItem:share:email", "menuItem:openWithSafari", "menuItem:openWithQQBrowser", "menuItem:originPage"]
+        });
+      });
+    };
+
+  </script>
+
+  <style>
+    html,body{
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+    .divContent {
+      width: 200px;
+      height: 300px;
+      /* position: absolute;
+      top: 50%;
+      left: 50%;
+      margin: -100px 0 0 -100px; */
+    }
+
+    .divContent_title {
+      text-align: center;
+      /* height: 100px; */
+    }
+
+    .divContent_div {
+      width: 200px;
+      height: 40px;
+      line-height: 40px;
+      text-align: center;
+      font-size: 17px;
+      display: block;
+      margin: 20px auto 0 auto;
+      border: none;
+      border-radius: 4px;
+      background-color: #07c160;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <div class="divContent">
+    <div class="divContent_title">即将跳转至</div>
+    <div class="divContent_title">香奈儿时尚精品 小程序，是否确认</div>
+    <div class="divContent_div">
+      <wx-open-launch-weapp username="gh_f9d572e8537f" path="/pages/selectUse/index" env-version="trial">
+        <template>
+          <button style="margin:20px 0 0 0;width: 200px;height: 40px;line-height: 40px;text-align: center;font-size: 17px;display: block;margin: 0 auto;border: none;border-radius: 4px;background-color: #07c160;color: #fff;">确认</button>
+        </template>
+      </wx-open-launch-weapp>
+    </div>
+  </div>
+
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Title</title>
+		<script src="https://cdn.bootcss.com/html2canvas/0.5.0-beta4/html2canvas.js"></script>
+		<style>
+			.my-div {
+				background-color: antiquewhite;
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				margin-top: 0px;
+				margin-left: 0px;
+			}
+
+
+			.content {
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				margin-top: 0px;
+				margin-left: 0px;
+
+			}
+		</style>
+	</head>
+	<body>
+		<div class="my-div">
+			这是源文件123
+			<img src="../html/image/svg/svg-2.svg" id="imgs" class="img1"></img>
+		</div>
+
+		<div class="content">
+
+			<img id="img" class="img" />
+		</div>
+
+		<script>
+			window.onload = function() {
+				//要转换为图片的dom对象
+				var element = document.querySelector('.my-div');
+				//要显示图片的img标签
+				var image = document.querySelector('#img');
+				//调用html2image方法
+				html2image(element, image);
+
+
+				function html2image(source, image) {
+					html2canvas(source).then(function(canvas) {
+						var imageData = canvas.toDataURL(1);
+						image.src = imageData;
+					});
+				}
+			}
+		</script>
+	</body>
+</html>
