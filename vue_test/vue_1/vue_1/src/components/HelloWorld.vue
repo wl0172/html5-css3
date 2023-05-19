@@ -1,20 +1,32 @@
 <script setup>
-defineProps({
+const props = defineProps({
   msg: {
     type: String,
     required: true
-  }
+  },
+  handleHelloWorldClick: {
+    type: Object,
+    required: false,
+    default: null,
+  },
+
 })
+
+// 组件内事件 - 1
+const handleHelloWorldClick = () => {
+  console.log(props,'=')
+}
+
+console.log(2)
+
 </script>
 
 <template>
   <div class="greetings">
     <h1 class="green">{{ msg }}</h1>
-    <h3>
-      You’ve successfully created a project with
-      <a href="https://vitejs.dev/" target="_blank" rel="noopener">Vite</a> +
-      <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a>.
-    </h3>
+
+    <div @click="props.handleHelloWorldClick ? props.handleHelloWorldClick() : handleHelloWorldClick()">HelloWorld事件11</div>
+
   </div>
 </template>
 
