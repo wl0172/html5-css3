@@ -5,19 +5,43 @@ import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
 
 
+class ApiError extends Error {
+  code: number = 0;
+}
+class HttpError extends Error {
+  statusCode: number = 200;
+}
+
+function isApiError(error: Error) {
+  if (typeof (error as ApiError).code === 'number') {
+      return true;
+  }
+  return false;
+}
+
+
+class Abc {
+  constructor() {
+  }
+  get(i:any) {
+    console.log(i+'======')
+  }
+}
+
+console.log( Abc.prototype.get(1) )
 
 
 
 
 
-
-// console.log( aaaa , bbbb , tom , '======' )
+// console.log(  )
 
 
 </script>
 
 <template>
-  
+
+  <!-- header -->
   <header>
     <!-- <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" /> -->
     <div class="wrapper">
@@ -28,7 +52,7 @@ import HelloWorld from './components/HelloWorld.vue'
       </nav>
     </div>
   </header>
-
+  <!-- RouterView -->
   <RouterView />
 
 </template>
