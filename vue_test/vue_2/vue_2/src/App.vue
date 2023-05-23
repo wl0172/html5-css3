@@ -5,28 +5,9 @@ import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
 
 
-interface Person {
-  name: string;
-  age?: number;
-  [propName: string]: any;
-}
 
-interface demo {
-  a?: any,
-  b?: any
-}
 
-// let tom: Person = {
-//   name: 'Tom',
-//   aaa: 123
-// };
 
-const voidTest = (person:Person):void => {
-  console.log( person )
-}
-voidTest({
-  name: '1',
-})
 
 
 
