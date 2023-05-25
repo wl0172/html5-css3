@@ -3,31 +3,17 @@ import { ref } from "vue";
 
 import { RouterLink, RouterView } from "vue-router";
 import HelloWorld from "./components/HelloWorld.vue";
+import router from './router/index';
 
-class ApiError extends Error {
-  code: number = 0;
-}
-class HttpError extends Error {
-  statusCode: number = 200;
-}
+let boo = ref(false)
 
-function isApiError(error: Error) {
-  if (typeof (error as ApiError).code === "number") {
-    return true;
-  }
-  return false;
-}
 
-class Abc {
-  constructor() {}
-  get(i: any) {
-    console.log(i + "======");
-  }
-}
 
-console.log(Abc.prototype.get(1));
 
-// console.log(  )
+
+
+
+
 </script>
 
 <template>
@@ -41,6 +27,8 @@ console.log(Abc.prototype.get(1));
         <RouterLink to="/about">About</RouterLink>
       </nav>
     </div>
+
+
   </header>
   <!-- RouterView -->
   <RouterView />
@@ -106,6 +94,19 @@ nav a:first-of-type {
 
     padding: 1rem 0;
     margin-top: 1rem;
+  }
+}
+
+
+.aaaa{
+  animation: abc 2s ease-in-out forwards;
+}
+@keyframes abc {
+  from {
+    transform: rotate(0deg)
+  }
+  to {
+    transform: rotate(250deg);
   }
 }
 </style>
