@@ -5,13 +5,55 @@ import { RouterLink, RouterView } from "vue-router";
 import HelloWorld from "./components/HelloWorld.vue";
 import router from './router/index';
 
-let boo = ref(false)
+
+export type ITest = {
+  name: string;
+  age: number;
+  get getName(): string;
+  get getAge(): number;
+  addAge(n?: number): void;
+  addAge2(n?: number): void;
+}
 
 
 
 
 
 
+
+
+
+
+
+
+
+
+type a = string
+const aa:a = 'aaaa'
+// console.log( aa );
+
+let tom: [string, number] = ['Tom', 25];
+// console.log( tom );
+
+enum Days { Sun, Mon, Tue, Wed, Thu, Fri, Sat };
+// console.log( Days );
+
+
+
+
+
+
+
+
+
+
+
+
+// div监听事件
+const handleInputEvent = (e:any) => {
+  console.log(e.target.innerHTML);
+}
+const handleBlurEvent = (e:any) => {}
 
 
 </script>
@@ -28,6 +70,14 @@ let boo = ref(false)
       </nav>
     </div>
 
+
+    
+    <div>div：contenteditable</div>
+    <div 
+      contenteditable="true" 
+      style="width: 100px;border: 1px solid;"
+      @input="handleInputEvent" @blur="handleBlurEvent">
+    </div>
 
   </header>
   <!-- RouterView -->

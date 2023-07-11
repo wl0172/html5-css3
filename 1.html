@@ -1,94 +1,64 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-
-  <style>
-    .item+.item::before {
-      content: '、';
+    <meta charset="UTF-8">
+    <title>js动画多物体运动</title>
+    <style type="text/css">
+     ul li{
+        width: 200px;
+        height: 100px;
+        margin-bottom: 20px;
+        background: yellow;
+        border: 5px solid #000;
+      }
+    </style>
+    
+    <script type="text/javascript">
+    
+window.onload=function(){
+    var ali=document.getElementsByTagName('li');
+    for (var i = 0; i < ali.length; i++) {
+      ali[i].timer=null;//给每个li单独定义定时器
+      ali[i].onmouseover=function(){
+        startmove(this,400);
+      }
+      ali[i].onmouseout=function(){
+        startmove(this,200);
+      }
+    };
+   }
+ 
+   //当然，运动函数也可以封装，下一篇博文我们将它封装起来
+   function startmove(obj,itarget){
+    clearInterval(obj.timer);
+    obj.timer=setInterval(function(){
+      var icur=parseInt(getStyle(obj,"width"));//用函数获取自身的宽度
+ 
+      var speed=(itarget-icur)/10;
+      speed=speed>0?Math.ceil(speed):Math.floor(speed);//有运动有除法的地方一定要取整。
+    
+    if (itarget==icur) {
+      clearInterval(obj.timer);
+    }else{
+      obj.style.width=parseInt(getStyle(obj,"width"))+speed+"px";
     }
-			
-	
-		
-  </style>
-
-</head>
-<body>
-
-  <span class="item">张三</span>
-  <span class="item">李四</span>
-  <span class="item">王五</span>
-  <span class="item">李四</span>
-  <span class="item">王五</span>
-  <span class="item">李四</span>
-  <span class="item">王五</span>
-
-</body>
-
-<script>
-	
-	const obj = {
-	    name: '伯约同学',
-	    age: 18
-	}
-	
-	const objProxy = new Proxy(obj, {
-	    // 获取值时的捕获器
-	    get(target, key) {
-	        console.log(`监听到对象的${key}属性被访问了`, target)
-	        return target[key]
-	    },
-	
-	    // 设置值时的捕获器
-	    set(target, key, newValue) {
-	        console.log(`监听到对象的${key}属性被设置了`, target)
-	        target[key] = newValue
-	    },
-	    // 监听 in 捕获器
-	    has(target, key) {
-	        console.log(`监听到对象的in操作符`, target)
-	        return key in target
-	    },
-	     
-	    // 监听 delete 捕获器
-	    deleteProperty(target, key) {
-	        console.log(`监听到对象的delete操作符`, target)
-	        delete target[key]
-	    },
-	     
-	    // 获取对象原型捕获器
-	    getPrototypeOf(target) { xxx },
-	     
-	    // 设置对象原型捕获器
-	    setPrototypeOf(target, prototype) { xxx },
-	     
-	    // 是否可以扩展捕获器
-	    isExtensible() { xxx },
-	     
-	    // 阻止扩展捕获器
-	    preventExtensions() { xxx },
-	     
-	    // 获取自己的属性描述符捕获器
-	    getOwnPropertyDescriptor() { xxx },
-	     
-	    // 定义属性捕获器
-	    defineProperty() { xxx },
-	     
-	    // 监听属性名和 symbol捕获器
-	    ownKeys() { xxx },
-	     
-	    // 函数调用操作的捕获器，用于函数对象
-	    apply() { xxx },
-	     
-	    // new 操作符捕获器，用于函数对象
-	    construct() { xxx }
-	
-	})
-	
-	
+      },30);
+   }
+ 
+   function getStyle(obj,attr){ //封装函数
+      if (obj.currentStyle) {
+        return obj.currentStyle[attr];
+      }else{
+        return getComputedStyle(obj,false)[attr];
+      };
+   }
+ 
 </script>
-
+<body>
+    <ul>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+</body>
 </html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<input type="file" id="file-input">
+		<button onclick="readFile()">读取文件</button>
+		
+		<script>
+		  function readFile() {
+		    const fileInput = document.getElementById('file-input');
+		    const file = fileInput.files[0];
+		    const reader = new FileReader();
+		
+		    reader.onload = function(event) {
+		      const contents = event.target.result;
+		      console.log(contents);
+		    };
+		
+		    reader.readAsText(file);
+		  }
+		</script>
+		
+	</body>
+</html>
