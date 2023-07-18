@@ -54,11 +54,84 @@
 			        return Reflect.deleteProperty(target,proKey)
 			    }
 			})
+			
+			
+			
 			setTimeout(()=>{
 				proxy.name
 				proxy.age = 12
 			    delete proxy.name
 			},1000)
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			// var person = {
+			//   name:'自行车'
+			// }
+			// var proxy = new Proxy(person,{
+			//   get:function(target,proKey){
+			//     console.log('proxyGet', target,proKey);
+			//         return Reflect.get(target,proKey)
+			//   },
+			//   set:function(target,proKey,val){
+			//     console.log('proxySet', target,proKey,val);
+			//         Reflect.set(target,proKey,val)
+			//   },
+			//     deleteProperty:function(target,proKey) {
+			//     console.log('proxyDelete', target,proKey);
+			//         return Reflect.deleteProperty(target,proKey)
+			//     }
+			// })
+			
+			
+			
+			// setTimeout(()=>{
+			//   proxy.name
+			//   proxy.age = 12
+			//     delete proxy.name
+			// },1000)
+			
+			
+			
+			
+			
+			const listen = {
+			  name: 1,
+			  aa: function() { 
+			    console.log('aa');
+			  },
+			  bb: function() {
+			    console.log('bb');
+			  }
+			};
+			
+			var proxyTest = new Proxy(listen,{
+			  get: function(target, proKey){
+			    console.log('proxyGet', target, proKey);
+			    return Reflect.get(target, proKey);
+			  },
+			  set: function(target, proKey, val){
+			    console.log('proxySet', target, proKey, val);
+			    return Reflect.set(target, proKey, val);
+			  },
+			  deleteProperty: function(target, proKey) {
+			    console.log('proxyDelete', target, proKey);
+			    return Reflect.deleteProperty(target, proKey);
+			  }
+			});
+			
+			proxyTest.aa();
+			
+
+			
+			
 		</script>
 
 	</body>
