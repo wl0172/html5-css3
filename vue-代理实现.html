@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+
+		<input type="file" id="file-input">
+		<button onclick="readFile()">读取文件</button>
+
+		<script>
+			const target = {
+				name: 'target',
+			};
+
+			const handler = {
+				get(target, key) {
+					console.log(`属性${key}被读取，值为：${target[key]}`);
+					return target[key];
+				},
+				set(target, key, value) {
+					console.log(`属性${key}被设置，旧值为：${target[key]}，新值为：${value}`);
+					target[key] = value;
+					return value;
+				},
+				deleteProperty(target, key) {
+					console.log('删除了', target, key)
+					return delete target[key]
+				}
+			};
+
+			const proxy = new Proxy(target, handler);
+			
+			
+			
+			
+			
+			
+			var person = {
+				name:'自行车'
+			}
+			var proxy = new Proxy(person,{
+				get:function(target,proKey){
+					console.log('proxyGet', target,proKey);
+			        return Reflect.get(target,proKey)
+				},
+				set:function(target,proKey,val){
+					console.log('proxySet', target,proKey,val);
+			        Reflect.set(target,proKey,val)
+				},
+			    deleteProperty:function(target,proKey) {
+					console.log('proxyDelete', target,proKey);
+			        return Reflect.deleteProperty(target,proKey)
+			    }
+			})
+			setTimeout(()=>{
+				proxy.name
+				proxy.age = 12
+			    delete proxy.name
+			},1000)
+		</script>
+
+	</body>
+</html>
